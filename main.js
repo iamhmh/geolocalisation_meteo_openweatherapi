@@ -6,7 +6,7 @@ $('#boutonMeteo').click(function(){
 //fonction en cas de réussite, on récupère les données de l'API
 function reussi(position) {
     let crd = position.coords;
-    $.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&lang=fr&APPID=fd73b9be61ef9ca47df317498c41383c`, function(data){
+    $.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&lang=fr&APPID={API key}`, function(data){
         console.log(data);
         let temperature = data.main.temp - 273.15;
         $('#temperaturePosition').html(`<h2 id="meteo">La temperature à ${data.name} est de ${temperature}°C</h2>`);
