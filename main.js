@@ -2,10 +2,10 @@
 $('#boutonMeteo').click(function(){
     navigator.geolocation.getCurrentPosition(reussi, echec);
 });
-  
+
+//fonction en cas de réussite, on récupère les données de l'API
 function reussi(position) {
     let crd = position.coords;
-  // GET request using jquery at openweathermap
     $.get(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&lang=fr&APPID=fd73b9be61ef9ca47df317498c41383c`, function(data){
         console.log(data);
         let temperature = data.main.temp - 273.15;
@@ -16,8 +16,7 @@ function reussi(position) {
         $('#temps').html(`${data.weather[0].description}`);
     });
   }
-  
-  // if geolocation comes back 'unsuccessful'
+//fonction en cas d'erreur  
 function echec(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
     $('#temperaturePosition').html(`ERROR(${err.code}): ${err.message}`);
